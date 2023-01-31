@@ -1,0 +1,18 @@
+.img {
+    width: 200px;
+    height: 200px;
+}
+
+.div_image {
+    height: 200px;
+    width: 200px;
+}
+
+.wrapper {
+    textAlign: "center";
+    maxWidth: "950px";
+    margin: "0 auto";
+    border: "1px solid #e6e6e6";
+    padding: "40px 25px";
+    marginTop: "50px";
+  }
