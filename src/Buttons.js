@@ -3,7 +3,13 @@
 
 function Buttons(props) { 
     const handleClick = () =>{
-        console.log(props.label);
+        if (props.label === props.selectedCategory)
+        {
+            alert("Correct");
+        } else {
+            alert ("False");
+        }
+        props.myClick();
     }
     return(
     <button onClick={handleClick}>{props.label}</button>
