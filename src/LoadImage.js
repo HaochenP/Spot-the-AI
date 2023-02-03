@@ -6,7 +6,8 @@ import {isMobile} from 'react-device-detect';
 function LoadImage(props){
     let images = {};
     let { height, width } = useWindowDimensions();
-    let heightString, widthString;
+    let heightString = "";
+    let widthString = "";
     if(isMobile) {
          heightString = height/2 + 'px';
          widthString = width + 'px';
