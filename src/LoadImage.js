@@ -1,13 +1,20 @@
 import styles from './LoadImage.css';
 import useWindowDimensions from './WindowDimensions.js';
-
+import {isMobile} from 'react-device-detect';
 
 
 function LoadImage(props){
     let images = {};
     let { height, width } = useWindowDimensions();
-    let heightString = height/2 + 'px';
-    let widthString = width/3 + 'px';
+    let heightString, widthString;
+    if(isMobile) {
+         heightString = height/1.5 + 'px';
+         widthString = width + 'px';
+    } else {
+         heightString = height/2 + 'px';
+        widthString = width/3 + 'px';
+    }
+    
     let usedImages = [];
 
     console.log(heightString, widthString);
