@@ -1,14 +1,16 @@
 import styles from './LoadImage.css';
-
+import useWindowDimensions from './WindowDimensions.js';
 
 
 
 function LoadImage(props){
-    console.log(props.selectedCategory);
-    let path = ' ';
-    console.log(path);
-
     let images = {};
+    let { height, width } = useWindowDimensions();
+    let heightString = height/2 + 'px';
+    let widthString = width/3 + 'px';
+    let usedImages = [];
+
+    console.log(heightString, widthString);
     function importAll(r) {
         let images = {};
         r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
@@ -18,24 +20,28 @@ function LoadImage(props){
     function getRandomInt(max) {
         return Math.floor(Math.random() * max);
     }
+
+
     if (props.selectedCategory === 'Real')
     {
         images = importAll(require.context('./real', false, /\.(png|jpe?g|svg|webp)$/));
     } else {
         images = importAll(require.context('./images', false, /\.(png|jpe?g|svg|webp)$/));
     }
-    console.log("path here"+path);
     
+
     const dictLength = Object.keys(images).length;
-
-
     const name = Object.keys(images)[getRandomInt(dictLength)];
+    while (usedImages.includes(name)){
+        dictLength = Object.keys(images).length;
+        name = Object.keys(images)[getRandomInt(dictLength)];
+    }
     console.log(name);
 
 
     return (
         <div className={styles.div_image}>
-        <img style={{ width: "50%", height: "50%" }} src={images[name] } />
+        <img style={{ width: widthString, height: heightString }} src={images[name] } />
         </div>
     );
 };
