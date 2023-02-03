@@ -8,7 +8,7 @@ function LoadImage(props){
     let { height, width } = useWindowDimensions();
     let heightString, widthString;
     if(isMobile) {
-         heightString = height/1.5 + 'px';
+         heightString = height/2 + 'px';
          widthString = width + 'px';
     } else {
          heightString = height/2 + 'px';
