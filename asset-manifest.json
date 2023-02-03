@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/Spot-the-AI/static/css/main.ae8106a3.css",
+    "main.js": "/Spot-the-AI/static/js/main.bdfa1737.js",
+    "static/js/787.eaf54e36.chunk.js": "/Spot-the-AI/static/js/787.eaf54e36.chunk.js",
+    "static/media/RWj4EZnx8guE0K3NRYG0--3--vgt7w_12.5x.webp": "/Spot-the-AI/static/media/RWj4EZnx8guE0K3NRYG0--3--vgt7w_12.5x.088f85d53f476eb4af0f.webp",
+    "static/media/e6Buh7soMyxCSe3r9nhe--1--D6SL1_12.5x.webp": "/Spot-the-AI/static/media/e6Buh7soMyxCSe3r9nhe--1--D6SL1_12.5x.1af3acffccd85f847780.webp",
+    "static/media/gh7tdkphd1fa1.webp": "/Spot-the-AI/static/media/gh7tdkphd1fa1.9a9dd46d3a14af97be02.webp",
+    "static/media/s35tcrc348fa1.webp": "/Spot-the-AI/static/media/s35tcrc348fa1.097c397bbe7a3e3b1274.webp",
+    "static/media/real2.jpg": "/Spot-the-AI/static/media/real2.19573d1c9fccaf0c9fe3.jpg",
+    "static/media/qciywihqg6fa1.webp": "/Spot-the-AI/static/media/qciywihqg6fa1.8e18d8a3492e30c7e104.webp",
+    "static/media/pflywkblt9fa1.webp": "/Spot-the-AI/static/media/pflywkblt9fa1.9f172be6f3d759b24bb9.webp",
+    "static/media/nwaCDUoDvmXb2jlmMVA9--3--r7lq6.webp": "/Spot-the-AI/static/media/nwaCDUoDvmXb2jlmMVA9--3--r7lq6.b5b2cba040cd2b4a7445.webp",
+    "static/media/zn4a4nr848fa1.webp": "/Spot-the-AI/static/media/zn4a4nr848fa1.711565db4eea52665f77.webp",
+    "static/media/wkmyMdDFPnGiicyRlGNN.webp": "/Spot-the-AI/static/media/wkmyMdDFPnGiicyRlGNN.4916d7eca95e2e5a1796.webp",
+    "static/media/ai1.webp": "/Spot-the-AI/static/media/ai1.df5e608660b88dabba26.webp",
+    "index.html": "/Spot-the-AI/index.html",
+    "main.ae8106a3.css.map": "/Spot-the-AI/static/css/main.ae8106a3.css.map",
+    "main.bdfa1737.js.map": "/Spot-the-AI/static/js/main.bdfa1737.js.map",
+    "787.eaf54e36.chunk.js.map": "/Spot-the-AI/static/js/787.eaf54e36.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ae8106a3.css",
+    "static/js/main.bdfa1737.js"
+  ]
+}
