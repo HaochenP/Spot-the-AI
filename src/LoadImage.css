@@ -8,6 +8,49 @@
     width: 200px;
 }
 
+#lightbox-img {
+  height: 100vh;
+  max-width: 100vw;
+  object-fit: cover;
+  position: inherit;
+  top: inherit;
+  left: inherit;
+  right: inherit;
+  bottom: inherit;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+
+#original_image{
+  height: 50vh;
+  max-width: 50vw;
+  object-fit: cover;
+}
+
+#lightbox {
+  content: '';
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  /*optional bg color*/
+  background-color: rgba(255, 255, 255, 0.9);
+  /*the following isn't necessary but will help center everything once we add buttons*/
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  pointer-events: initial;
+  touch-action: initial;
+}
+
+
 .wrapper {
     textAlign: "center";
     maxWidth: "950px";
@@ -16,3 +59,4 @@
     padding: "40px 25px";
     marginTop: "50px";
   }
+

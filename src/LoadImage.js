@@ -1,24 +1,43 @@
 import styles from './LoadImage.css';
 import useWindowDimensions from './WindowDimensions.js';
 import {isMobile} from 'react-device-detect';
-
+import React, {  useEffect ,useState, useLayoutEffect, useMemo} from "react";
 
 function LoadImage(props){
-    let images = {};
+    const [aiImages, setAiImages] = useState({}); 
+    const [realImages, setImages] = useState({}); 
+    const [currentImage, setCurrentImage] = useState('')
+  
     let { height, width } = useWindowDimensions();
-    let heightString = "";
-    let widthString = "";
-    if(isMobile) {
-         heightString = height/2 + 'px';
-         widthString = width + 'px';
-    } else {
-         heightString = height/2 + 'px';
-        widthString = width/3 + 'px';
-    }
-    
-    let usedImages = [];
+    height = height/ 3;
+    width = width/ 3;
+    console.log(height);
+    console.log(width);
+    const loadData = () => {
+      
+      setImages(importAll(require.context('./real', false, /\.(png|jpe?g|svg|webp)$/)));
+      setAiImages(importAll(require.context('./images', false, /\.(png|jpe?g|svg|webp)$/)));
+      console.log("here");
 
-    console.log(heightString, widthString);
+    }
+
+    useMemo(() => {
+      console.log('me');
+      loadData();
+    }, []);
+
+    useMemo(() => {
+      console.log('second me');
+      if (props.selectedCategory === 'Real'){
+        const dictLength = Object.keys(realImages).length;
+        setCurrentImage(realImages[Object.keys(realImages)[getRandomInt(dictLength)]]);
+    } else {
+      const dictLength = Object.keys(aiImages).length;
+      setCurrentImage(aiImages[Object.keys(aiImages)[getRandomInt(dictLength)]]);
+    }
+    }, [props.count, props.selectedCategory]);
+
+
     function importAll(r) {
         let images = {};
         r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
@@ -30,28 +49,34 @@ function LoadImage(props){
     }
 
 
-    if (props.selectedCategory === 'Real')
-    {
-        images = importAll(require.context('./real', false, /\.(png|jpe?g|svg|webp)$/));
-    } else {
-        images = importAll(require.context('./images', false, /\.(png|jpe?g|svg|webp)$/));
-    }
-    
+    const [click, setClick] = useState(false)
 
-    const dictLength = Object.keys(images).length;
-    const name = Object.keys(images)[getRandomInt(dictLength)];
-    while (usedImages.includes(name)){
-        dictLength = Object.keys(images).length;
-        name = Object.keys(images)[getRandomInt(dictLength)];
+    const setFlag = () => {
+        setClick(true)
+        console.log("set");
     }
-    console.log(name);
 
+    const unsetFlag = () => {
+        setClick(false)
+        console.log("unset");
+    }
 
     return (
-        <div className={styles.div_image}>
-        <img style={{ width: widthString, height: heightString }} src={images[name] } />
-        </div>
-    );
+        <>
+          {click ? (
+
+          <div id="lightbox" onClick={unsetFlag} >
+
+
+            <img id="lightbox-img" src={currentImage}></img>
+          </div> 
+            
+          ) : (
+            <img  src={currentImage} id="original_image" onClick={setFlag}></img>
+          )}
+        </>
+      );
+    
 };
 
 export default LoadImage;

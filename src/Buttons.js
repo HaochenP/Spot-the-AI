@@ -18,10 +18,11 @@ function Buttons(props) {
     
 
     const handleClick = () =>{
+        props.changeCount(props.count + 1);
         if (props.label === props.selectedCategory)
         {
             alert("Correct");
-            let newScore = props.score + 1
+            let newScore = props.score + 1;
             props.scoreCheck(newScore);
         } else {
             alert ("False");
