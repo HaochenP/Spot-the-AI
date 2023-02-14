@@ -1,6 +1,5 @@
 import styles from './LoadImage.css';
 import useWindowDimensions from './WindowDimensions.js';
-import {isMobile} from 'react-device-detect';
 import React, {  useEffect ,useState, useLayoutEffect, useMemo} from "react";
 
 function LoadImage(props){
