@@ -2,10 +2,11 @@ import './App.css';
 import Buttons from './Buttons.js'
 import LoadImage from './LoadImage';
 import HighScore from './HighScore'
-import React, {  useState } from "react";
+import React, {  useMemo, useState } from "react";
 
 
 function App() {
+  
   const possibility = ['Real', 'AI']
   const select = getRandomInt(2);
   const [image, setImage] = useState(possibility[select]);

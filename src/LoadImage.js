@@ -5,13 +5,16 @@ import React, {  useEffect ,useState, useLayoutEffect, useMemo} from "react";
 function LoadImage(props){
     const [aiImages, setAiImages] = useState({}); 
     const [realImages, setImages] = useState({}); 
-    const [currentImage, setCurrentImage] = useState('')
-  
-    let { height, width } = useWindowDimensions();
-    height = height/ 3;
-    width = width/ 3;
-    console.log(height);
-    console.log(width);
+    const [currentImage, setCurrentImage] = useState('/static/media/ai1.webp');
+    function importAll(r) {
+      let images = {};
+      r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
+      return images;
+    };
+
+  function getRandomInt(max) {
+      return Math.floor(Math.random() * max);
+  }
     const loadData = () => {
       
       setImages(importAll(require.context('./real', false, /\.(png|jpe?g|svg|webp)$/)));
@@ -27,25 +30,27 @@ function LoadImage(props){
 
     useMemo(() => {
       console.log('second me');
+      
       if (props.selectedCategory === 'Real'){
         const dictLength = Object.keys(realImages).length;
-        setCurrentImage(realImages[Object.keys(realImages)[getRandomInt(dictLength)]]);
+        const index = getRandomInt(dictLength)
+        console.log("real",dictLength);
+        setCurrentImage(realImages[Object.keys(realImages)[index]]);
+        delete realImages[Object.keys(realImages)[index]];
+
     } else {
       const dictLength = Object.keys(aiImages).length;
-      setCurrentImage(aiImages[Object.keys(aiImages)[getRandomInt(dictLength)]]);
+      const index = getRandomInt(dictLength);
+      console.log("ai",dictLength);
+      setCurrentImage(aiImages[Object.keys(aiImages)[index]]);
+      delete aiImages[Object.keys(aiImages)[index]];
+
     }
-    }, [props.count, props.selectedCategory]);
+    console.log(currentImage);
+    }, []);
 
 
-    function importAll(r) {
-        let images = {};
-        r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
-        return images;
-      };
-
-    function getRandomInt(max) {
-        return Math.floor(Math.random() * max);
-    }
+    
 
 
     const [click, setClick] = useState(false)

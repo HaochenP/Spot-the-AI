@@ -18,7 +18,8 @@ function Buttons(props) {
     
 
     const handleClick = () =>{
-        props.changeCount(props.count + 1);
+        let newCount = props.count + 1;
+        props.changeCount(newCount);
         if (props.label === props.selectedCategory)
         {
             alert("Correct");
