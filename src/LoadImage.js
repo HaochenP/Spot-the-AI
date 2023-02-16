@@ -5,7 +5,7 @@ import React, {  useEffect ,useState, useLayoutEffect, useMemo} from "react";
 function LoadImage(props){
     const [aiImages, setAiImages] = useState({}); 
     const [realImages, setImages] = useState({}); 
-    const [currentImage, setCurrentImage] = useState('/static/media/ai1.webp');
+    const [currentImage, setCurrentImage] = useState('/static/media/generated.webp');
     function importAll(r) {
       let images = {};
       r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
@@ -20,6 +20,8 @@ function LoadImage(props){
       setImages(importAll(require.context('./real', false, /\.(png|jpe?g|svg|webp)$/)));
       setAiImages(importAll(require.context('./images', false, /\.(png|jpe?g|svg|webp)$/)));
       console.log("here");
+      console.log(realImages);
+      console.log(aiImages);
 
     }
 
@@ -47,7 +49,7 @@ function LoadImage(props){
 
     }
     console.log(currentImage);
-    }, []);
+    }, [props.count, realImages, aiImages]);
 
 
     
@@ -76,6 +78,7 @@ function LoadImage(props){
           </div> 
             
           ) : (
+  
             <img  src={currentImage} id="original_image" onClick={setFlag}></img>
           )}
         </>
