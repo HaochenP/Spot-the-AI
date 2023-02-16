@@ -2,9 +2,14 @@ import './App.css';
 import Buttons from './Buttons.js';
 import LoadImage from './LoadImage';
 import HighScore from './HighScore';
+import Swipable from './Swipable'
+import NewSwipe from './NewSwipe'
 import Timer from './Timer';
 import React, {  useMemo, useState, useEffect } from "react";
+import {isMobile} from 'react-device-detect';
+import {Swipe, Position} from "react-swipe-component";
 
+import { useSwipeable, UP, DOWN, SwipeEventData } from 'react-swipeable';
 
 function App() {
   
@@ -49,11 +54,29 @@ function App() {
     setCount(getRandomInt(1000000));
   }
 
+  function correctAnswer () {
+    setScore((prev) => prev + 1);
+    setnextPicture(true);
+    changeCounter()
+    changeImage();
+  }
   
+  function incorrectAnswer () {
+    setScore(0);
+    setNewGame(true);
+    changeCounter();
+    changeImage();
+  }
 
   console.log("here" + image);
 
+  const handlers = useSwipeable({
+    onSwiped: (eventData) => console.log("User Swiped!", eventData['dir']),
+  });
+  
   return (
+    <>
+    {!isMobile ? (
     <div className="App">
       <header className="App-header">
       <HighScore score = {score} />
@@ -70,8 +93,18 @@ function App() {
         
       </header>
       
-    </div>
-  );
+    </div> 
+    ) : (
+      <div>
+        <HighScore score = {score} />
+        <Timer startNewGame={startNewGame} newGame = {newGame} nextPicture = {nextPicture} />
+        <NewSwipe label = {image} incorrectAnswer = {incorrectAnswer} correctAnswer = {correctAnswer} count = {count}/>
+        
+      </div>
+    )
+    }
+  </>
+  )
 }
 
 export default App;
