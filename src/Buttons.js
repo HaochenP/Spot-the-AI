@@ -10,8 +10,8 @@ function Buttons(props) {
           paddingHorizontal: 32,
           borderRadius: 4,
           elevation: 3,
-          width: 50,
-          height: 50,
+          width: 100,
+          height: 100,
         }
         
       };

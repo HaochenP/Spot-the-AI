@@ -1,6 +1,8 @@
 import styles from './LoadImage.css';
 import useWindowDimensions from './WindowDimensions.js';
 import React, {  useEffect ,useState, useLayoutEffect, useMemo} from "react";
+import ProgressBar from 'react-bootstrap/ProgressBar';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function LoadImage(props){
     const [aiImages, setAiImages] = useState({}); 
@@ -49,7 +51,7 @@ function LoadImage(props){
 
     }
     console.log(currentImage);
-    }, [props.count, realImages, aiImages]);
+    }, [props.count, realImages, aiImages, props.newGame]);
 
 
     
@@ -78,8 +80,11 @@ function LoadImage(props){
           </div> 
             
           ) : (
-  
-            <img  src={currentImage} id="original_image" onClick={setFlag}></img>
+            [
+              <div>
+            <img   src={currentImage} id="original_image" onClick={setFlag}></img>
+            </div>
+          ]
           )}
         </>
       );
