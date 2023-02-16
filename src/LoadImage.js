@@ -3,38 +3,42 @@ import useWindowDimensions from './WindowDimensions.js';
 import React, {  useEffect ,useState, useLayoutEffect, useMemo} from "react";
 import ProgressBar from 'react-bootstrap/ProgressBar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {isMobile} from 'react-device-detect';
+
+
 
 function LoadImage(props){
     const [aiImages, setAiImages] = useState({}); 
     const [realImages, setImages] = useState({}); 
     const [currentImage, setCurrentImage] = useState('/static/media/generated.webp');
+
+    // Function for adding file names from a file to a dictionary
     function importAll(r) {
       let images = {};
       r.keys().map((item, index) => { images[item.replace('./', '')] = r(item); });
       return images;
     };
 
+    // Returns a random integer
   function getRandomInt(max) {
       return Math.floor(Math.random() * max);
   }
+
+  // Loading initial data
     const loadData = () => {
       
       setImages(importAll(require.context('./real', false, /\.(png|jpe?g|svg|webp)$/)));
       setAiImages(importAll(require.context('./images', false, /\.(png|jpe?g|svg|webp)$/)));
-      console.log("here");
-      console.log(realImages);
-      console.log(aiImages);
-
     }
-
+    
+    // Loading images path only once
     useMemo(() => {
-      console.log('me');
       loadData();
     }, []);
 
+
+    // Load next image when user clicks button or timer runs out
     useMemo(() => {
-      console.log('second me');
-      
       if (props.selectedCategory === 'Real'){
         const dictLength = Object.keys(realImages).length;
         const index = getRandomInt(dictLength)
@@ -56,7 +60,7 @@ function LoadImage(props){
 
     
 
-
+    
     const [click, setClick] = useState(false)
 
     const setFlag = () => {
@@ -70,6 +74,7 @@ function LoadImage(props){
     }
 
     return (
+      <>{!isMobile ? (
         <>
           {click ? (
 
@@ -86,6 +91,11 @@ function LoadImage(props){
             </div>
           ]
           )}
+        </>
+        ) :(
+          <img   src={currentImage} id="original_image_mobile" onClick={setFlag}></img>
+        )
+  }
         </>
       );
     

@@ -21,6 +21,7 @@
     "react-scripts": "5.0.1",
     "react-swipe-component": "^3.0.0",
     "react-swipeable": "^7.0.0",
+    "reactjs-popup": "^2.0.5",
     "web-vitals": "^2.1.4"
   },
   "browser": {

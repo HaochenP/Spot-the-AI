@@ -12,6 +12,7 @@ function Timer(props) {
         setNum((prev) => prev - 1);
 
     }
+    // Check when timer goes to 0
     useEffect(() => {
         if (num === 0){
             alert("Times up, you lost");
@@ -21,12 +22,15 @@ function Timer(props) {
         }
     }, [num]);
 
+    // Start timer again when new picture loads or when new game starts
     useEffect(() => {
         if (props.newGame || props.nextPicture)  {
             setNum(timeLimit);
         }
     }, [props.newGame, props.nextPicture]);
 
+
+    // Starting the timer
     useEffect(() => {
         setPause(true)
         intervalRef.current = setInterval(decreaseNum, 1000);

@@ -2,17 +2,18 @@ import './App.css';
 import Buttons from './Buttons.js';
 import LoadImage from './LoadImage';
 import HighScore from './HighScore';
-import Swipable from './Swipable'
 import NewSwipe from './NewSwipe'
 import Timer from './Timer';
 import React, {  useMemo, useState, useEffect } from "react";
 import {isMobile} from 'react-device-detect';
-import {Swipe, Position} from "react-swipe-component";
-
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 import { useSwipeable, UP, DOWN, SwipeEventData } from 'react-swipeable';
+import Modal from 'react-bootstrap/Modal';
 
 function App() {
   
+
   const possibility = ['Real', 'AI']
   const select = getRandomInt(2);
   const [image, setImage] = useState(possibility[select]);
@@ -20,6 +21,7 @@ function App() {
   const [count, setCount] = useState(getRandomInt(1000000));
   const [newGame, setNewGame] = useState(false);
   const [nextPicture, setnextPicture] = useState(false);
+  const [startGame, setStartGmae] = useState(false);
 
 
   useEffect (() =>{
@@ -62,10 +64,21 @@ function App() {
   }
   
   function incorrectAnswer () {
+    alert("Sorry you lost");
+    unsetFlag();
     setScore(0);
     setNewGame(true);
     changeCounter();
     changeImage();
+  }
+  const setFlag = () => {
+    setStartGmae(true)
+    console.log("set");
+  }
+
+  const unsetFlag = () => {
+    setStartGmae(false)
+      console.log("unset");
   }
 
   console.log("here" + image);
@@ -74,9 +87,19 @@ function App() {
     onSwiped: (eventData) => console.log("User Swiped!", eventData['dir']),
   });
   
+
+
+    
+
+  
+
+
   return (
     <>
-    {!isMobile ? (
+
+    {startGame ? (
+      <>
+          {!isMobile ? (
     <div className="App">
       <header className="App-header">
       <HighScore score = {score} />
@@ -98,13 +121,30 @@ function App() {
       <div>
         <HighScore score = {score} />
         <Timer startNewGame={startNewGame} newGame = {newGame} nextPicture = {nextPicture} />
-        <NewSwipe label = {image} incorrectAnswer = {incorrectAnswer} correctAnswer = {correctAnswer} count = {count}/>
+        <NewSwipe label = {image} incorrectAnswer = {incorrectAnswer} correctAnswer = {correctAnswer} count = {count} />
         
       </div>
     )
     }
+  
   </>
-  )
+    
+    
+    ) : (
+        <Popup open = {!startGame} position="right center">
+          <div className="App">
+          <p>Welcome to spot the AI</p>
+          <p>A game where you decide whether a drawing is made by humans or AI</p>
+          <p>Swipe left if you think the image is made by artist</p>
+          <p>Swipe right if you think the image is made an AI</p>
+        <button onClick = {setFlag}> Start game</button>
+        </div>
+        </Popup>
+
+      
+    )}
+    </>
+  );
 }
 
 export default App;
