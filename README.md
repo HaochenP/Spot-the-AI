@@ -1,6 +1,8 @@
 # Spot the AI
 A website for users to guess whether an art is made by an AI or human.
 
+## Try the website here
+spot-the-nwqeagcsb-haochenp.vercel.app
 
 
 # Getting Started with Create React App
